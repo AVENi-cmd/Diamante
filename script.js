@@ -4,10 +4,9 @@ window.addEventListener('scroll', () => {
   header.classList.toggle('scrolled', window.scrollY > 50);
 });
 
-// ===== Force autoplay all videos (iOS fix) =====
+// ===== Force autoplay chalet videos (iOS fix) =====
 function forcePlayVideos() {
-  document.querySelectorAll('video').forEach(video => {
-    // ضبط الخصائص عبر JS — ضروري لـ iOS
+  document.querySelectorAll('.chalet-video').forEach(video => {
     video.muted = true;
     video.setAttribute('muted', '');
     video.defaultMuted = true;
@@ -23,21 +22,15 @@ function forcePlayVideos() {
     tryPlay();
     video.addEventListener('loadeddata', tryPlay);
     video.addEventListener('canplay', tryPlay);
-    video.addEventListener('loadedmetadata', tryPlay);
   });
 }
 
-// تشغيل عند التحميل
 document.addEventListener('DOMContentLoaded', forcePlayVideos);
 window.addEventListener('load', forcePlayVideos);
-
-// إعادة المحاولة عدة مرات (iOS يحتاج)
-setTimeout(forcePlayVideos, 300);
-setTimeout(forcePlayVideos, 800);
+setTimeout(forcePlayVideos, 500);
 setTimeout(forcePlayVideos, 1500);
 
-// إعادة المحاولة عند أول تفاعل من المستخدم
-['touchstart', 'click', 'scroll', 'touchmove'].forEach(evt => {
+['touchstart', 'click', 'scroll'].forEach(evt => {
   document.addEventListener(evt, forcePlayVideos, { once: true, passive: true });
 });
 
