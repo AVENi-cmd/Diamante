@@ -39,16 +39,33 @@ document.querySelectorAll('.chalet-item').forEach(item => {
   const video = item.querySelector('.chalet-video');
   if (!video) return;
 
-  const obs = new IntersectionObserver(([e]) => {
-    if (e.isIntersecting) {
-      video.muted = true;
-      video.play().catch(() => {});
-    } else {
-      video.pause();
-    }
-  }, { threshold: 0.45 });
-  obs.observe(item);
+  video.muted = true;
+  video.defaultMuted = true;
+  video.playsInline = true;
+
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      if (entry.isIntersecting) {
+        video.play().catch(() => {});
+      } else {
+        video.pause();
+      }
+    },
+    { threshold: 0.45 }
+  );
+
+  observer.observe(item);
 });
+
+// ===== Min date = today =====
+const dateInput = document.getElementById('bDate');
+if (dateInput) {
+  const today = new Date();
+  const yyyy = today.getFullYear();
+  const mm = String(today.getMonth() + 1).padStart(2, '0');
+  const dd = String(today.getDate()).padStart(2, '0');
+  dateInput.min = `${yyyy}-${mm}-${dd}`;
+}
 
 // ===== Reveal on scroll =====
 const revealObs = new IntersectionObserver((entries) => {
@@ -117,7 +134,7 @@ document.getElementById('bookingForm').addEventListener('submit', e => {
 
 شكراً 🌸`;
 
-  window.open(`https://wa.me/966549008997?text=${encodeURIComponent(msg)}`, '_blank');
+  window.open(`https://wa.me/966549008997?text=${encodeURIComponent(msg)}`, '_blank', 'noopener');
 });
 
 // ===== Lightbox =====
@@ -138,12 +155,19 @@ function closeLb() {
 }
 function navLb(dir) {
   currentIndex = (currentIndex + dir + items.length) % items.length;
-  lbImg.style.animation = 'none';
-  setTimeout(() => lbImg.style.animation = '', 10);
   lbImg.src = items[currentIndex].dataset.src;
 }
 
-items.forEach((it, i) => it.addEventListener('click', () => openLb(i)));
+items.forEach((it, i) => {
+  it.addEventListener('click', () => openLb(i));
+  it.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      openLb(i);
+    }
+  });
+});
+
 lightbox.querySelector('.lb-close').addEventListener('click', closeLb);
 lightbox.querySelector('.lb-prev').addEventListener('click', e => { e.stopPropagation(); navLb(-1); });
 lightbox.querySelector('.lb-next').addEventListener('click', e => { e.stopPropagation(); navLb(1); });
