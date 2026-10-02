@@ -58,15 +58,46 @@ const statsObs = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.stat-num').forEach(el => statsObs.observe(el));
 
+// ===== Time Pickers =====
+function fillHours(sel, def = 12){
+  for(let i = 1; i <= 12; i++){
+    const opt = document.createElement('option');
+    opt.value = i;
+    opt.textContent = i;
+    if(i === def) opt.selected = true;
+    sel.appendChild(opt);
+  }
+}
+
+document.querySelectorAll('.time-picker').forEach(tp => {
+  const hourSel = tp.querySelector('.tpHour');
+  const periodSel = tp.querySelector('.tpPeriod');
+  const defHour = +tp.dataset.defaultHour || 12;
+  const defPeriod = tp.dataset.defaultPeriod || 'صباحاً';
+
+  fillHours(hourSel, defHour);
+  periodSel.value = defPeriod;
+});
+
 // ===== Booking form → WhatsApp =====
 document.getElementById('bookingForm').addEventListener('submit', e => {
   e.preventDefault();
 
+  const checkin =
+    document.querySelector('#tpCheckin .tpHour').value + ':' +
+    document.querySelector('#tpCheckin .tpMin').value + ' ' +
+    document.querySelector('#tpCheckin .tpPeriod').value;
+
+  const checkout =
+    document.querySelector('#tpCheckout .tpHour').value + ':' +
+    document.querySelector('#tpCheckout .tpMin').value + ' ' +
+    document.querySelector('#tpCheckout .tpPeriod').value;
+
   const data = {
     chalet:   document.getElementById('bChalet').value,
     date:     document.getElementById('bDate').value,
-    checkin:  document.getElementById('bCheckin').value,
-    checkout: document.getElementById('bCheckout').value,
+    checkin:  checkin,
+    checkout: checkout,
     name:     document.getElementById('bName').value,
     phone:    document.getElementById('bPhone').value
   };
