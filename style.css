@@ -21,12 +21,6 @@ body{
 .container{max-width:1200px;margin:0 auto;padding:0 24px}
 img{max-width:100%;display:block}
 
-/* ===== منع مشغّل الفيديو التلقائي ===== */
-video{
-  -webkit-playsinline: true;
-  pointer-events: none;
-}
-
 /* ===== Header ===== */
 .header{
   position:fixed;top:0;right:0;left:0;z-index:100;
@@ -87,9 +81,17 @@ video{
   display:flex;align-items:center;justify-content:center;
   overflow:hidden;
 }
-.hero-video{
-  position:absolute;inset:0;width:100%;height:100%;
-  object-fit:cover;z-index:0;
+.hero-media{
+  position:absolute;inset:0;
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+  z-index:0;
+}
+.hero-media video{
+  width:100%;height:100%;
+  object-fit:cover;
+  display:block;
   pointer-events:none;
 }
 .hero-overlay{
@@ -194,14 +196,21 @@ video{
   position:relative;height:92vh;min-height:580px;
   overflow:hidden;border-radius:26px;background:#000;
 }
-.chalet-video{
-  position:absolute;inset:0;width:100%;height:100%;
-  object-fit:cover;
-  filter:brightness(.9) contrast(1.08) saturate(1.12);
+.chalet-media{
+  position:absolute;inset:0;
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
   transition:transform 1.2s ease;
+}
+.chalet-media video{
+  width:100%;height:100%;
+  object-fit:cover;
+  display:block;
+  filter:brightness(.9) contrast(1.08) saturate(1.12);
   pointer-events:none;
 }
-.chalet-item:hover .chalet-video{transform:scale(1.03)}
+.chalet-item:hover .chalet-media{transform:scale(1.03)}
 .chalet-shade{
   position:absolute;inset:0;
   background:linear-gradient(to top,rgba(0,0,0,.75) 0%,rgba(0,0,0,.15) 45%,transparent 75%);
