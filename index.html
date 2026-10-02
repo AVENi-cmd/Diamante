@@ -90,10 +90,9 @@
 
       <div class="feature-item">
         <div class="feature-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"  stroke-linecap="round" stroke-linejoin="round7">
-            <rect x="3" y="3 " width="618" height"/>
-="18" rx="2"/>
-                       <path d="M3 9h18"/>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="2"/>
+            <path d="M3 9h18"/>
             <path d="M9 21V9"/>
             <circle cx="15" cy="14" r="1.2" fill="currentColor" stroke="none"/>
             <circle cx="15" cy="17" r="1.2" fill="currentColor" stroke="none"/>
@@ -107,7 +106,8 @@
         <div class="feature-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="12" cy="8" r="3.5"/>
-            <path d="M5 21c0-4 3-6 7-6s7 2 <path d="M9 8l1.5 1.5L15 6" opacity=".9"/>
+            <path d="M5 21c0-4 3-6 7-6s7 2 7 6"/>
+            <path d="M9 8l1.5 1.5L15 6" opacity=".9"/>
           </svg>
         </div>
         <h4>ألعاب أطفال</h4>
@@ -218,7 +218,6 @@
       <h2>لمحات من الفخامة</h2>
     </div>
     <div class="gallery-grid">
-      <!-- الصورة الكبيرة المميزة -->
       <div class="g-item" data-src="images/hero.png" style="background-image:url('images/hero.png')"></div>
       <div class="g-item" data-src="images/gallery-1.png" style="background-image:url('images/gallery-1.png')"></div>
       <div class="g-item" data-src="images/gallery-2.png" style="background-image:url('images/gallery-2.png')"></div>
@@ -271,11 +270,37 @@
         <div class="field-row">
           <label class="field">
             <span>وقت الوصول</span>
-            <input type="time" id="bCheckin" value="16:00" required>
+            <div class="time-picker" id="tpCheckin" data-default-hour="4" data-default-period="مساءً">
+              <select class="tpHour" aria-label="الساعة"></select>
+              <span class="tpSep">:</span>
+              <select class="tpMin" aria-label="الدقيقة">
+                <option value="00">00</option>
+                <option value="15">15</option>
+                <option value="30">30</option>
+                <option value="45">45</option>
+              </select>
+              <select class="tpPeriod" aria-label="الفترة">
+                <option value="صباحاً">صباحاً</option>
+                <option value="مساءً">مساءً</option>
+              </select>
+            </div>
           </label>
           <label class="field">
             <span>وقت المغادرة</span>
-            <input type="time" id="bCheckout" value="04:00" required>
+            <div class="time-picker" id="tpCheckout" data-default-hour="4" data-default-period="صباحاً">
+              <select class="tpHour" aria-label="الساعة"></select>
+              <span class="tpSep">:</span>
+              <select class="tpMin" aria-label="الدقيقة">
+                <option value="00">00</option>
+                <option value="15">15</option>
+                <option value="30">30</option>
+                <option value="45">45</option>
+              </select>
+              <select class="tpPeriod" aria-label="الفترة">
+                <option value="صباحاً">صباحاً</option>
+                <option value="مساءً">مساءً</option>
+              </select>
+            </div>
           </label>
         </div>
 
