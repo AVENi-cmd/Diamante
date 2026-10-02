@@ -58,46 +58,42 @@ const statsObs = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.stat-num').forEach(el => statsObs.observe(el));
 
-// ===== Time Pickers =====
-function fillHours(sel, def = 12){
-  for(let i = 1; i <= 12; i++){
-    const opt = document.createElement('option');
-    opt.value = i;
-    opt.textContent = i;
-    if(i === def) opt.selected = true;
-    sel.appendChild(opt);
+// ===== Time Options =====
+function generateTimeOptions() {
+  const opts = [];
+  for (let h = 0; h < 24; h++) {
+    for (let m = 0; m < 60; m += 30) {
+      const hour12 = h === 0 ? 12 : (h > 12 ? h - 12 : h);
+      const period = h < 12 ? 'صباحاً' : 'مساءً';
+      const mm = m.toString().padStart(2, '0');
+      opts.push(`${hour12}:${mm} ${period}`);
+    }
   }
+  return opts;
 }
 
-document.querySelectorAll('.time-picker').forEach(tp => {
-  const hourSel = tp.querySelector('.tpHour');
-  const periodSel = tp.querySelector('.tpPeriod');
-  const defHour = +tp.dataset.defaultHour || 12;
-  const defPeriod = tp.dataset.defaultPeriod || 'صباحاً';
+const timeOpts = generateTimeOptions();
+const checkinSel = document.getElementById('bCheckin');
+const checkoutSel = document.getElementById('bCheckout');
 
-  fillHours(hourSel, defHour);
-  periodSel.value = defPeriod;
+timeOpts.forEach(t => {
+  checkinSel.insertAdjacentHTML('beforeend', `<option value="${t}">${t}</option>`);
+  checkoutSel.insertAdjacentHTML('beforeend', `<option value="${t}">${t}</option>`);
 });
+
+// القيم الافتراضية
+checkinSel.value = '4:00 مساءً';
+checkoutSel.value = '4:00 صباحاً';
 
 // ===== Booking form → WhatsApp =====
 document.getElementById('bookingForm').addEventListener('submit', e => {
   e.preventDefault();
 
-  const checkin =
-    document.querySelector('#tpCheckin .tpHour').value + ':' +
-    document.querySelector('#tpCheckin .tpMin').value + ' ' +
-    document.querySelector('#tpCheckin .tpPeriod').value;
-
-  const checkout =
-    document.querySelector('#tpCheckout .tpHour').value + ':' +
-    document.querySelector('#tpCheckout .tpMin').value + ' ' +
-    document.querySelector('#tpCheckout .tpPeriod').value;
-
   const data = {
     chalet:   document.getElementById('bChalet').value,
     date:     document.getElementById('bDate').value,
-    checkin:  checkin,
-    checkout: checkout,
+    checkin:  document.getElementById('bCheckin').value,
+    checkout: document.getElementById('bCheckout').value,
     name:     document.getElementById('bName').value,
     phone:    document.getElementById('bPhone').value
   };
