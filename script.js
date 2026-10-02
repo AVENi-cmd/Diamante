@@ -4,17 +4,46 @@ window.addEventListener('scroll', () => {
   header.classList.toggle('scrolled', window.scrollY > 50);
 });
 
-// ===== Chalet videos play when visible =====
-document.querySelectorAll('.chalet-item').forEach(item => {
-  const video = item.querySelector('.chalet-video');
-  if (!video) return;
+// ===== Load Videos (Desktop only — to fix iOS auto-player) =====
+const isMobile = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
 
-  const obs = new IntersectionObserver(([e]) => {
-    if (e.isIntersecting) video.play().catch(()=>{});
-    else video.pause();
-  }, { threshold: 0.45 });
-  obs.observe(item);
-});
+if (!isMobile) {
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+
+      // Hero video
+      const heroMedia = document.querySelector('.hero-media');
+      if (heroMedia && heroMedia.dataset.video) {
+        const v = document.createElement('video');
+        v.src = heroMedia.dataset.video;
+        v.autoplay = true;
+        v.muted = true;
+        v.loop = true;
+        v.playsInline = true;
+        heroMedia.appendChild(v);
+        v.play().catch(()=>{});
+      }
+
+      // Chalet videos
+      document.querySelectorAll('.chalet-media').forEach(media => {
+        const v = document.createElement('video');
+        v.src = media.dataset.video;
+        v.muted = true;
+        v.loop = true;
+        v.playsInline = true;
+        v.preload = 'metadata';
+        media.appendChild(v);
+
+        const obs = new IntersectionObserver(([e]) => {
+          if (e.isIntersecting) v.play().catch(()=>{});
+          else v.pause();
+        }, { threshold: 0.45 });
+        obs.observe(media.parentElement);
+      });
+
+    }, 1200);
+  });
+}
 
 // ===== Reveal on scroll =====
 const revealObs = new IntersectionObserver((entries) => {
@@ -27,7 +56,7 @@ const revealObs = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.15 });
 
-document.querySelectorAll('.section-head, .about-text, .about-img, .feature-item, .review-card, .stat, .g-item').forEach(el => {
+document.querySelectorAll('.section-head, .about-text, .feature-item, .review-card, .stat, .g-item').forEach(el => {
   el.style.opacity = 0;
   el.style.transform = 'translateY(30px)';
   el.style.transition = 'opacity .8s ease, transform .8s ease';
