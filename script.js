@@ -4,6 +4,30 @@ window.addEventListener('scroll', () => {
   header.classList.toggle('scrolled', window.scrollY > 50);
 });
 
+// ===== Detect In-App Browsers (TikTok, Instagram, etc.) =====
+(function detectInAppBrowser() {
+  const ua = navigator.userAgent || navigator.vendor || window.opera;
+  const inAppPatterns = [
+    /TikTok/i,
+    /BytedanceWebview/i,
+    /Instagram/i,
+    /FBAN|FBAV/i,
+    /Snapchat/i,
+    /Twitter/i,
+    /Line/i,
+    /MicroMessenger/i
+  ];
+
+  const isInApp = inAppPatterns.some(p => p.test(ua));
+
+  if (isInApp) {
+    const notice = document.getElementById('browserNotice');
+    if (notice) {
+      setTimeout(() => notice.classList.add('show'), 800);
+    }
+  }
+})();
+
 // ===== Force autoplay chalet videos (iOS fix) =====
 function forcePlayVideos() {
   document.querySelectorAll('.chalet-video').forEach(video => {
@@ -27,8 +51,6 @@ function forcePlayVideos() {
 
 document.addEventListener('DOMContentLoaded', forcePlayVideos);
 window.addEventListener('load', forcePlayVideos);
-setTimeout(forcePlayVideos, 500);
-setTimeout(forcePlayVideos, 1500);
 
 ['touchstart', 'click', 'scroll'].forEach(evt => {
   document.addEventListener(evt, forcePlayVideos, { once: true, passive: true });
@@ -66,6 +88,12 @@ if (dateInput) {
   const dd = String(today.getDate()).padStart(2, '0');
   dateInput.min = `${yyyy}-${mm}-${dd}`;
 }
+
+// ===== Hide scroll hint after 5s =====
+setTimeout(() => {
+  const hint = document.querySelector('.scroll-hint');
+  if (hint) hint.classList.add('hidden');
+}, 5000);
 
 // ===== Reveal on scroll =====
 const revealObs = new IntersectionObserver((entries) => {
@@ -110,19 +138,28 @@ const statsObs = new IntersectionObserver((entries) => {
 document.querySelectorAll('.stat-num').forEach(el => statsObs.observe(el));
 
 // ===== Booking form → WhatsApp =====
-document.getElementById('bookingForm').addEventListener('submit', e => {
-  e.preventDefault();
+const bookingForm = document.getElementById('bookingForm');
+if (bookingForm) {
+  bookingForm.addEventListener('submit', e => {
+    e.preventDefault();
 
-  const data = {
-    chalet:   document.getElementById('bChalet').value,
-    date:     document.getElementById('bDate').value,
-    checkin:  document.getElementById('bCheckin').value,
-    checkout: document.getElementById('bCheckout').value,
-    name:     document.getElementById('bName').value,
-    phone:    document.getElementById('bPhone').value
-  };
+    const data = {
+      chalet:   document.getElementById('bChalet').value,
+      date:     document.getElementById('bDate').value,
+      checkin:  document.getElementById('bCheckin').value,
+      checkout: document.getElementById('bCheckout').value,
+      name:     document.getElementById('bName').value,
+      phone:    document.getElementById('bPhone').value
+    };
 
-  const msg =
+    // تحقق من رقم الجوال
+    const cleanPhone = data.phone.replace(/\D/g, '');
+    if (cleanPhone.length < 9) {
+      alert('الرجاء إدخال رقم جوال صحيح');
+      return;
+    }
+
+    const msg =
 `🌴 *طلب حجز جديد - ديامُونتا*
 
 👤 الاسم: ${data.name}
@@ -134,48 +171,52 @@ document.getElementById('bookingForm').addEventListener('submit', e => {
 
 شكراً 🌸`;
 
-  window.open(`https://wa.me/966549008997?text=${encodeURIComponent(msg)}`, '_blank', 'noopener');
-});
+    window.open(`https://wa.me/966549008997?text=${encodeURIComponent(msg)}`, '_blank', 'noopener');
+  });
+}
 
 // ===== Lightbox =====
 const lightbox = document.getElementById('lightbox');
-const lbImg = lightbox.querySelector('.lb-img');
 const items = [...document.querySelectorAll('.g-item')];
-let currentIndex = 0;
 
-function openLb(index) {
-  currentIndex = index;
-  lbImg.src = items[index].dataset.src;
-  lightbox.classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-function closeLb() {
-  lightbox.classList.remove('open');
-  document.body.style.overflow = '';
-}
-function navLb(dir) {
-  currentIndex = (currentIndex + dir + items.length) % items.length;
-  lbImg.src = items[currentIndex].dataset.src;
-}
+if (lightbox && items.length) {
+  const lbImg = lightbox.querySelector('.lb-img');
+  let currentIndex = 0;
 
-items.forEach((it, i) => {
-  it.addEventListener('click', () => openLb(i));
-  it.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      openLb(i);
-    }
+  function openLb(index) {
+    currentIndex = index;
+    lbImg.src = items[index].dataset.src;
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLb() {
+    lightbox.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function navLb(dir) {
+    currentIndex = (currentIndex + dir + items.length) % items.length;
+    lbImg.src = items[currentIndex].dataset.src;
+  }
+
+  items.forEach((it, i) => {
+    it.addEventListener('click', () => openLb(i));
+    it.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openLb(i);
+      }
+    });
   });
-});
 
-lightbox.querySelector('.lb-close').addEventListener('click', closeLb);
-lightbox.querySelector('.lb-prev').addEventListener('click', e => { e.stopPropagation(); navLb(-1); });
-lightbox.querySelector('.lb-next').addEventListener('click', e => { e.stopPropagation(); navLb(1); });
-lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLb(); });
+  lightbox.querySelector('.lb-close').addEventListener('click', closeLb);
+  lightbox.querySelector('.lb-prev').addEventListener('click', e => { e.stopPropagation(); navLb(-1); });
+  lightbox.querySelector('.lb-next').addEventListener('click', e => { e.stopPropagation(); navLb(1); });
+  lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLb(); });
 
-document.addEventListener('keydown', e => {
-  if (!lightbox.classList.contains('open')) return;
-  if (e.key === 'Escape') closeLb();
-  if (e.key === 'ArrowRight') navLb(-1);
-  if (e.key === 'ArrowLeft') navLb(1);
-});
+  document.addEventListener('keydown', e => {
+    if (!lightbox.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLb();
+    if (e.key === 'ArrowRight') navLb(-1);
+    if (e.key === 'ArrowLeft') navLb(1);
+  });
+}
