@@ -79,6 +79,22 @@ document.querySelectorAll('.chalet-item').forEach(item => {
   observer.observe(item);
 });
 
+// ===== Lazy load gallery backgrounds =====
+const lazyGallery = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const el = entry.target;
+      const bg = el.dataset.bg;
+      if (bg) {
+        el.style.backgroundImage = `url('${bg}')`;
+        lazyGallery.unobserve(el);
+      }
+    }
+  });
+}, { rootMargin: '200px' });
+
+document.querySelectorAll('.g-item').forEach(el => lazyGallery.observe(el));
+
 // ===== Min date = today =====
 const dateInput = document.getElementById('bDate');
 if (dateInput) {
@@ -106,7 +122,7 @@ const revealObs = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.15 });
 
-document.querySelectorAll('.section-head, .about-text, .feature-item, .review-card, .stat, .g-item').forEach(el => {
+document.querySelectorAll('.section-head, .about-text, .feature-item, .review-card, .stat').forEach(el => {
   el.style.opacity = 0;
   el.style.transform = 'translateY(30px)';
   el.style.transition = 'opacity .8s ease, transform .8s ease';
