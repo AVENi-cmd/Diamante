@@ -4,14 +4,55 @@ window.addEventListener('scroll', () => {
   header.classList.toggle('scrolled', window.scrollY > 50);
 });
 
-// ===== Chalet videos play when visible =====
+// ===== Force autoplay all videos (iOS fix) =====
+function forcePlayVideos() {
+  document.querySelectorAll('video').forEach(video => {
+    // ضبط الخصائص عبر JS — ضروري لـ iOS
+    video.muted = true;
+    video.setAttribute('muted', '');
+    video.defaultMuted = true;
+    video.playsInline = true;
+    video.setAttribute('playsinline', '');
+    video.setAttribute('webkit-playsinline', '');
+
+    const tryPlay = () => {
+      const p = video.play();
+      if (p && p.catch) p.catch(() => {});
+    };
+
+    tryPlay();
+    video.addEventListener('loadeddata', tryPlay);
+    video.addEventListener('canplay', tryPlay);
+    video.addEventListener('loadedmetadata', tryPlay);
+  });
+}
+
+// تشغيل عند التحميل
+document.addEventListener('DOMContentLoaded', forcePlayVideos);
+window.addEventListener('load', forcePlayVideos);
+
+// إعادة المحاولة عدة مرات (iOS يحتاج)
+setTimeout(forcePlayVideos, 300);
+setTimeout(forcePlayVideos, 800);
+setTimeout(forcePlayVideos, 1500);
+
+// إعادة المحاولة عند أول تفاعل من المستخدم
+['touchstart', 'click', 'scroll', 'touchmove'].forEach(evt => {
+  document.addEventListener(evt, forcePlayVideos, { once: true, passive: true });
+});
+
+// ===== Chalet videos: play when visible =====
 document.querySelectorAll('.chalet-item').forEach(item => {
   const video = item.querySelector('.chalet-video');
   if (!video) return;
 
   const obs = new IntersectionObserver(([e]) => {
-    if (e.isIntersecting) video.play().catch(()=>{});
-    else video.pause();
+    if (e.isIntersecting) {
+      video.muted = true;
+      video.play().catch(() => {});
+    } else {
+      video.pause();
+    }
   }, { threshold: 0.45 });
   obs.observe(item);
 });
