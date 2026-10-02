@@ -21,6 +21,37 @@ body{
 .container{max-width:1200px;margin:0 auto;padding:0 24px}
 img{max-width:100%;display:block}
 
+/* ===== In-App Browser Notice ===== */
+.browser-notice{
+  position:fixed;
+  top:0;left:0;right:0;
+  z-index:9999;
+  background:var(--dark);
+  color:#fff;
+  padding:14px 18px;
+  display:none;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  box-shadow:0 4px 20px rgba(0,0,0,.3);
+  font-size:14px;
+}
+.browser-notice.show{display:flex}
+.browser-notice p{margin:0;flex:1;line-height:1.5}
+.browser-notice button{
+  background:var(--accent);
+  color:#fff;
+  border:none;
+  padding:8px 16px;
+  border-radius:20px;
+  font-family:'Tajawal',sans-serif;
+  font-weight:700;
+  font-size:13px;
+  cursor:pointer;
+  white-space:nowrap;
+}
+.browser-notice button:hover{background:var(--accent-dark)}
+
 /* ===== Header ===== */
 .header{
   position:fixed;top:0;right:0;left:0;z-index:100;
@@ -162,7 +193,9 @@ img{max-width:100%;display:block}
   transform:translateX(-50%);
   color:#fff;font-size:24px;
   animation:bounce 2s infinite;z-index:2;
+  opacity:1;transition:opacity .5s;
 }
+.scroll-hint.hidden{opacity:0}
 @keyframes bounce{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,10px)}}
 
 /* ===== Sections ===== */
@@ -330,8 +363,12 @@ img{max-width:100%;display:block}
   background-position:center;
   transition:transform .5s;
   cursor:zoom-in;
+  outline:none;
 }
 .g-item:hover{transform:scale(1.04)}
+.g-item:focus-visible{
+  box-shadow:0 0 0 4px rgba(232,115,74,.5);
+}
 .g-item:nth-child(1){grid-column:span 2;grid-row:span 2}
 .g-item:nth-child(10),
 .g-item:nth-child(11){grid-column:span 2}
@@ -527,4 +564,6 @@ img{max-width:100%;display:block}
   .lb-prev,.lb-next{width:44px;height:44px;font-size:26px}
   .lb-prev{right:12px}
   .lb-next{left:12px}
+  .browser-notice{font-size:13px;padding:12px 14px}
+  .browser-notice button{padding:6px 12px;font-size:12px}
 }
