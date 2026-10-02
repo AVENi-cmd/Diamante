@@ -84,27 +84,29 @@ img{max-width:100%;display:block}
   align-items:center;
   justify-content:center;
   overflow:hidden;
-  background:#1a1a1a;
-  isolation:isolate;
 }
-.hero-video{
+.hero-bg{
   position:absolute;
   inset:0;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  z-index:-2;
-  pointer-events:none;
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+  z-index:0;
+  animation:heroZoom 20s ease-out forwards;
+}
+@keyframes heroZoom{
+  from{transform:scale(1.08)}
+  to{transform:scale(1)}
 }
 .hero-overlay{
   position:absolute;
   inset:0;
   background:linear-gradient(to bottom,rgba(0,0,0,.35),rgba(0,0,0,.65));
-  z-index:-1;
+  z-index:1;
 }
 .hero-content{
   position:relative;
-  z-index:1;
+  z-index:2;
   text-align:center;
   color:#fff;
   padding:0 20px;
@@ -220,13 +222,13 @@ img{max-width:100%;display:block}
   filter:brightness(.9) contrast(1.08) saturate(1.12);
   transition:transform 1.2s ease;
   pointer-events:none;
-  z-index:-1;
+  z-index:0;
 }
 .chalet-item:hover .chalet-video{transform:scale(1.03)}
 .chalet-shade{
   position:absolute;inset:0;
   background:linear-gradient(to top,rgba(0,0,0,.75) 0%,rgba(0,0,0,.15) 45%,transparent 75%);
-  z-index:0;
+  z-index:1;
 }
 .chalet-text{
   position:absolute;
@@ -234,7 +236,7 @@ img{max-width:100%;display:block}
   right:56px;
   left:56px;
   color:#fff;
-  z-index:1;
+  z-index:2;
 }
 .chalet-num{
   display:block;
