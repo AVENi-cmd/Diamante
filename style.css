@@ -361,6 +361,7 @@ img{max-width:100%;display:block}
   border-radius:16px;
   background-size:cover;
   background-position:center;
+  background-color:#f0e8dc;
   transition:transform .5s;
   cursor:zoom-in;
   outline:none;
