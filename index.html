@@ -6,25 +6,35 @@
 <title>ديامونتا | شاليهات فندقية فاخرة - الأحساء</title>
 <link rel="icon" href="images/logo.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&family=Amiri:wght@400;700&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<!-- Header -->
+<!-- ===== Header ===== -->
 <header class="header" id="header">
   <div class="container nav">
     <a href="#" class="logo"><img src="images/logo.png" alt="ديامونتا" /></a>
     <nav class="nav-links">
       <a href="#home">الرئيسية</a>
       <a href="#chalets">الشاليهات</a>
+      <a href="#gallery">المعرض</a>
       <a href="#about">عن المجمع</a>
     </nav>
-    <a href="https://wa.me/966549008997" target="_blank" class="btn-book">احجز الآن</a>
+    <div class="header-actions">
+      <a href="https://maps.app.goo.gl/zGxGuBwkhUFNVni98" target="_blank" class="btn-location" aria-label="الموقع">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+          <circle cx="12" cy="10" r="3"/>
+        </svg>
+      </a>
+      <a href="#about" class="btn-book">احجز الآن</a>
+    </div>
   </div>
 </header>
 
-<!-- Hero -->
+<!-- ===== Hero ===== -->
 <section class="hero" id="home">
   <video class="hero-video" autoplay muted loop playsinline poster="images/hero.png">
     <source src="images/videos/hero.mp4" type="video/mp4" />
@@ -39,63 +49,145 @@
   <div class="scroll-hint">↓</div>
 </section>
 
-<!-- Chalets -->
-<section class="chalets" id="chalets">
+<!-- ===== Features ===== -->
+<section class="features">
   <div class="container">
     <div class="section-head">
-      <span class="eyebrow">مجموعتنا</span>
-      <h2>أربعة شاليهات · تجربة استثنائية</h2>
+      <span class="eyebrow">لماذا ديامونتا</span>
+      <h2>تجربة مصممة بعناية</h2>
     </div>
 
-    <div class="grid">
-      <a href="#ch1" class="card">
-        <video class="card-video" muted loop playsinline preload="metadata" poster="images/gallery-1.png">
-          <source src="images/videos/ch1.mp4" type="video/mp4" />
-        </video>
-        <div class="card-info">
-          <span class="card-num">01</span>
-          <h3>شاليه 1</h3>
-          <p>مسبح بحواجز · ألعاب أطفال</p>
+    <div class="features-grid">
+      <div class="feature-item">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s2-3 5-3 5 3 5 3 2-3 5-3 5 3 5 3"/><path d="M2 19s2-3 5-3 5 3 5 3 2-3 5-3 5 3 5 3"/><path d="M2 5s2-3 5-3 5 3 5 3 2-3 5-3 5 3 5 3"/></svg>
         </div>
-      </a>
+        <h4>مسابح خاصة</h4>
+        <p>مسابح مصممة بعناية مع إضاءة ليلية ساحرة</p>
+      </div>
 
-      <a href="#ch2" class="card">
-        <video class="card-video" muted loop playsinline preload="metadata" poster="images/gallery-2.png">
-          <source src="images/videos/ch2.mp4" type="video/mp4" />
-        </video>
-        <div class="card-info">
-          <span class="card-num">02</span>
-          <h3>شاليه 2</h3>
-          <p>مسبح بحواجز · ألعاب أطفال</p>
+      <div class="feature-item">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 18v-6a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v6"/><path d="M2 18h20"/><path d="M6 12V8a3 3 0 0 1 3-3h6a3 3 0 0 1 3 3v4"/></svg>
         </div>
-      </a>
+        <h4>جلسات خارجية</h4>
+        <p>مساحات مفتوحة وأجواء عائلية هادئة</p>
+      </div>
 
-      <a href="#ch3" class="card">
-        <video class="card-video" muted loop playsinline preload="metadata" poster="images/gallery-3.png">
-          <source src="images/videos/ch3.mp4" type="video/mp4" />
-        </video>
-        <div class="card-info">
-          <span class="card-num">03</span>
-          <h3>شاليه 3</h3>
-          <p>صالة + مجلس خارجي · مسبح</p>
+      <div class="feature-item">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 21v-6h6v6"/></svg>
         </div>
-      </a>
+        <h4>مطبخ مجهز</h4>
+        <p>مطبخ كامل بكل الأدوات لراحتكم</p>
+      </div>
 
-      <a href="#ch4" class="card">
-        <video class="card-video" muted loop playsinline preload="metadata" poster="images/gallery-4.png">
-          <source src="images/videos/ch4.mp4" type="video/mp4" />
-        </video>
-        <div class="card-info">
-          <span class="card-num">04</span>
-          <h3>شاليه 4</h3>
-          <p>مسبح أطفال · ألعاب مائية</p>
+      <div class="feature-item">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
         </div>
-      </a>
+        <h4>ألعاب أطفال</h4>
+        <p>مساحات آمنة وألعاب مائية ممتعة</p>
+      </div>
+
+      <div class="feature-item">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h4>خصوصية تامة</h4>
+        <p>شاليهات مستقلة للعائلات فقط</p>
+      </div>
+
+      <div class="feature-item">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17h14M5 17a2 2 0 1 1-4 0v-5l2-5h14l3 5v5h-2"/><circle cx="7.5" cy="17.5" r="1.5"/><circle cx="17.5" cy="17.5" r="1.5"/></svg>
+        </div>
+        <h4>مواقف خاصة</h4>
+        <p>مواقف واسعة وآمنة داخل المجمع</p>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- Gallery -->
+<!-- ===== Chalets (Cinematic) ===== -->
+<section class="chalets" id="chalets">
+  <div class="section-head">
+    <span class="eyebrow">مجموعتنا</span>
+    <h2>أربعة شاليهات · تجربة استثنائية</h2>
+  </div>
+
+  <div class="chalet-stack">
+
+    <article class="chalet-item" id="ch1">
+      <video class="chalet-video" muted loop playsinline preload="metadata" poster="images/gallery-1.png">
+        <source src="images/videos/ch1.mp4" type="video/mp4" />
+      </video>
+      <div class="chalet-shade"></div>
+      <div class="chalet-text">
+        <span class="chalet-num">01</span>
+        <h3>شاليه 1</h3>
+      </div>
+    </article>
+
+    <article class="chalet-item" id="ch2">
+      <video class="chalet-video" muted loop playsinline preload="metadata" poster="images/gallery-2.png">
+        <source src="images/videos/ch2.mp4" type="video/mp4" />
+      </video>
+      <div class="chalet-shade"></div>
+      <div class="chalet-text">
+        <span class="chalet-num">02</span>
+        <h3>شاليه 2</h3>
+      </div>
+    </article>
+
+    <article class="chalet-item" id="ch3">
+      <video class="chalet-video" muted loop playsinline preload="metadata" poster="images/gallery-3.png">
+        <source src="images/videos/ch3.mp4" type="video/mp4" />
+      </video>
+      <div class="chalet-shade"></div>
+      <div class="chalet-text">
+        <span class="chalet-num">03</span>
+        <h3>شاليه 3</h3>
+      </div>
+    </article>
+
+    <article class="chalet-item" id="ch4">
+      <video class="chalet-video" muted loop playsinline preload="metadata" poster="images/gallery-4.png">
+        <source src="images/videos/ch4.mp4" type="video/mp4" />
+      </video>
+      <div class="chalet-shade"></div>
+      <div class="chalet-text">
+        <span class="chalet-num">04</span>
+        <h3>شاليه 4</h3>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ===== Stats ===== -->
+<section class="stats">
+  <div class="container stats-grid">
+    <div class="stat">
+      <span class="stat-num" data-target="4">0</span>
+      <span class="stat-label">شاليهات فاخرة</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num" data-target="36">0</span>
+      <span class="stat-label">ضيف أقصى سعة</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num" data-target="100" data-suffix="%">0</span>
+      <span class="stat-label">خصوصية تامة</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num" data-target="5" data-suffix=".0">0</span>
+      <span class="stat-label">تقييم الضيوف</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Gallery ===== -->
 <section class="gallery" id="gallery">
   <div class="container">
     <div class="section-head">
@@ -103,17 +195,17 @@
       <h2>لمحات من الفخامة</h2>
     </div>
     <div class="gallery-grid">
-      <div class="g-item" style="background-image:url('images/gallery-1.png')"></div>
-      <div class="g-item" style="background-image:url('images/gallery-2.png')"></div>
-      <div class="g-item" style="background-image:url('images/gallery-3.png')"></div>
-      <div class="g-item" style="background-image:url('images/gallery-4.png')"></div>
-      <div class="g-item" style="background-image:url('images/hero.png')"></div>
-      <div class="g-item" style="background-image:url('images/about.png')"></div>
+      <div class="g-item" data-src="images/gallery-1.png" style="background-image:url('images/gallery-1.png')"></div>
+      <div class="g-item" data-src="images/gallery-2.png" style="background-image:url('images/gallery-2.png')"></div>
+      <div class="g-item" data-src="images/gallery-3.png" style="background-image:url('images/gallery-3.png')"></div>
+      <div class="g-item" data-src="images/gallery-4.png" style="background-image:url('images/gallery-4.png')"></div>
+      <div class="g-item" data-src="images/hero.png" style="background-image:url('images/hero.png')"></div>
+      <div class="g-item" data-src="images/about.png" style="background-image:url('images/about.png')"></div>
     </div>
   </div>
-</footersection>
+</section>
 
-<!-- About -->
+<!-- ===== About + Booking ===== -->
 <section class="about" id="about">
   <div class="container about-grid">
     <div class="about-text">
@@ -122,11 +214,135 @@
       <p>في شاليهات ديامونتا، نؤمن أن الإقامة ليست مجرد مكان، بل تجربة. مساحات خضراء واسعة، مسابح مصممة بعناية، وجلسات خارجية تجمع العائلة في أجواء من الخصوصية والرقي.</p>
       <a href="https://wa.me/966549008997" target="_blank" class="btn-outline">تواصل معنا</a>
     </div>
-    <div class="about-img" style="background-image:url('images/about.png')"></div>
+
+    <div class="booking-inline">
+      <div class="booking-head">
+        <span class="eyebrow">حجز سريع</span>
+        <h3>احجز شاليهك في ديامونتا</h3>
+        <p>عبِّئ البيانات وسنتواصل معك عبر واتساب</p>
+      </div>
+
+      <form class="booking-form" id="bookingForm">
+        <label class="field">
+          <span>اختر الشاليه</span>
+          <select id="bChalet" required>
+            <option value="">— اختر —</option>
+            <option value="شاليه 1 (يتسع 12 شخص)">شاليه 1 — يتسع 12 شخص</option>
+            <option value="شاليه 2 (يتسع 12 شخص)">شاليه 2 — يتسع 12 شخص</option>
+            <option value="شاليه 3 (يتسع 18-36 شخص)">شاليه 3 — يتسع 18-36 شخص</option>
+            <option value="شاليه 4 (يتسع 18-15 شخص)">شاليه 4 — يتسع 18-15 شخص</option>
+          </select>
+        </label>
+
+        <div class="field-row">
+          <label class="field">
+            <span>التاريخ</span>
+            <input type="date" id="bDate" required>
+          </label>
+          <label class="field">
+            <span>عدد الأشخاص</span>
+            <input type="number" id="bGuests" min="1" max="40" placeholder="مثال: 10" required>
+          </label>
+        </div>
+
+        <div class="field-row">
+          <label class="field">
+            <span>وقت الوصول</span>
+            <input type="time" id="bCheckin" value="16:00" required>
+          </label>
+          <label class="field">
+            <span>وقت المغادرة</span>
+            <input type="time" id="bCheckout" value="04:00" required>
+          </label>
+        </div>
+
+        <label class="field">
+          <span>اسمك الكريم</span>
+          <input type="text" id="bName" placeholder="الاسم" required>
+        </label>
+
+        <label class="field">
+          <span>رقم جوالك</span>
+          <input type="tel" id="bPhone" placeholder="05XXXXXXXX" required>
+        </label>
+
+        <button type="submit" class="btn-primary booking-submit">
+          أرسل الحجز عبر واتساب
+        </button>
+      </form>
+    </div>
   </div>
 </section>
 
-<!-- Footer -->
+<!-- ===== Reviews ===== -->
+<section class="reviews">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">آراء ضيوفنا</span>
+      <h2>تجارب تُروى</h2>
+    </div>
+
+    <div class="reviews-grid">
+
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p>"يجنن ما شاء الله، مرتب وقريب ونظيف ومكانه واضح، أنصح فيه وبقوة."</p>
+        <div class="reviewer">
+          <strong>Maryiam Abdullah</strong>
+          <span>الهفوف · 41 مراجعة</span>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p>"منتجع ممتاز ونظيف، تجربة حلوة مع العائلة."</p>
+        <div class="reviewer">
+          <strong>Khowla Yousef</strong>
+          <span>الهفوف · 31 مراجعة</span>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p>"يجنن، خذوه وأنتم مغمضين. نظيف وهذا أهم شي عندي، النظافة في أدق التفاصيل. أما تصميمه بتشوفونه روعه وراقي، وواسع. شكراً لصاحب الشاليه على تعامله الطيب وحرصه."</p>
+        <div class="reviewer">
+          <strong>صباح العبدلي</strong>
+          <span>مرشد محلي · 18 مراجعة</span>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p>"شاليه رائع بمعنى الكلمة، من روعة تعامل صاحب الشاليهات الأخ سالم الدوسري، ودايماً تعامل العامل المحترم. الشاليهات كلها روعة، وسبق زرناها هالمرة أخذنا رقم 2 علشان الألعاب للأطفال. بصراحة جميل ومرتب وراقي، الله يبارك للأخ سالم بحلاله."</p>
+        <div class="reviewer">
+          <strong>عبير عبدالرحمن</strong>
+          <span>الهفوف · 54 مراجعة</span>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p>"كانت تجربة جميلة في الشاليه، حيث كان نظيفاً ومرتباً، يصلح لعدد 15 إلى 20 من الأفراد."</p>
+        <div class="reviewer">
+          <strong>Dahom Alsubia</strong>
+          <span>مرشد محلي · 10 مراجعات</span>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="stars">★★★★☆</div>
+        <p>"ما شاء الله تبارك الله، الاستراحة سرحه وجميله جداً، والمكان مرتب ونظيف، حتى دورات المياه نظيفة جداً. الصالة الكنب متصل يشيل عدد وفيه طاولات صغيرة. الاستراحة باختصار تجمل للضيوف."</p>
+        <div class="reviewer">
+          <strong>نورة الملحم</strong>
+          <span>الهفوف · 36 مراجعة</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== Footer ===== -->
 <footer class="footer">
   <div class="container">
     <img src="images/logo.png" alt="ديامونتا" class="footer-logo" />
@@ -138,15 +354,24 @@
     </div>
     <small>© 2025 ديامونتا. جميع الحقوق محفوظة.</small>
   </div>
-</>
+</footer>
 
-<!-- Floating WhatsApp -->
+<!-- ===== Floating WhatsApp ===== -->
 <a href="https://wa.me/966549008997?text=السلام%20عليكم،%20أرغب%20بحجز%20شاليه%20في%20ديامونتا%20🏝️"
-   target="_blank" class="wa-float" aria-label="حجز">
-  <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28">
+   target="_blank" class="wa-float" aria-label="حجز عبر واتساب">
+  <svg viewBox="0 0 24 24" fill="currentColor">
     <path d="M20.5 3.5A11 11 0 0 0 2 17l-2 5 5-2a11 11 0 1 0 15.5-16.5zM12 21a9 9 0 0 1-4.6-1.3l-.3-.2-3 .8.8-2.9-.2-.3A9 9 0 1 1 12 21zm5-6.7c-.3-.1-1.6-.8-1.9-.9s-.4-.1-.6.1-.7.9-.8 1.1-.3.2-.6.1a7.3 7.3 0 0 1-3.6-3.2c-.3-.5.3-.4.8-1.4.1-.2 0-.4 0-.5s-.6-1.4-.8-1.9-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3c-.2.3-.9.9-.9 2.2s.9 2.5 1 2.7a10.6 10.6 0 0 0 4 3.5c1.4.6 1.9.6 2.5.5s1.5-.6 1.7-1.2.2-1.1.2-1.2-.2-.1-.5-.2z"/>
   </svg>
+  <span>احجز عبر واتساب</span>
 </a>
+
+<!-- ===== Lightbox ===== -->
+<div class="lightbox" id="lightbox">
+  <button class="lb-close" aria-label="إغلاق">✕</button>
+  <button class="lb-prev" aria-label="السابق">‹</button>
+  <img class="lb-img" src="" alt="">
+  <button class="lb-next" aria-label="التالي">›</button>
+</div>
 
 <script src="script.js"></script>
 </body>
