@@ -65,7 +65,6 @@ document.getElementById('bookingForm').addEventListener('submit', e => {
   const data = {
     chalet:   document.getElementById('bChalet').value,
     date:     document.getElementById('bDate').value,
-    guests:   document.getElementById('bGuests').value,
     checkin:  document.getElementById('bCheckin').value,
     checkout: document.getElementById('bCheckout').value,
     name:     document.getElementById('bName').value,
@@ -78,7 +77,6 @@ document.getElementById('bookingForm').addEventListener('submit', e => {
 👤 الاسم: ${data.name}
 📱 الجوال: ${data.phone}
 🏝️ الشاليه: ${data.chalet}
-👥 عدد الأشخاص: ${data.guests}
 📅 التاريخ: ${data.date}
 🕓 وقت الوصول: ${data.checkin}
 🕓 وقت المغادرة: ${data.checkout}
