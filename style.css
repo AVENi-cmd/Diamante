@@ -328,6 +328,7 @@ img{max-width:100%;display:block}
   border-radius:12px;background:#fff;
   font-size:15px;color:var(--dark);
   transition:.2s;outline:none;
+  width:100%;
 }
 .field input:focus,.field select:focus{
   border-color:var(--accent);
@@ -337,43 +338,6 @@ img{max-width:100%;display:block}
 .booking-submit{
   margin-top:10px;border:none;cursor:pointer;
   font-family:'Tajawal',sans-serif;width:100%;
-}
-
-/* ===== Time Picker ===== */
-.time-picker{
-  display:flex;
-  align-items:center;
-  gap:4px;
-  background:#fff;
-  border:1.5px solid #e3dcd2;
-  border-radius:12px;
-  padding:4px 10px;
-  transition:.2s;
-}
-.time-picker:focus-within{
-  border-color:var(--accent);
-  box-shadow:0 0 0 3px rgba(232,115,74,.15);
-}
-.time-picker select{
-  border:none;
-  background:transparent;
-  font-family:'Tajawal',sans-serif;
-  font-size:15px;
-  color:var(--dark);
-  padding:8px 2px;
-  outline:none;
-  cursor:pointer;
-  appearance:none;
-  -webkit-appearance:none;
-  text-align:center;
-}
-.time-picker .tpHour{width:38px}
-.time-picker .tpMin{width:38px}
-.time-picker .tpPeriod{width:72px}
-.time-picker .tpSep{
-  color:var(--muted);
-  font-weight:700;
-  font-size:16px;
 }
 
 /* ===== Reviews ===== */
