@@ -59,31 +59,35 @@ const statsObs = new IntersectionObserver((entries) => {
 document.querySelectorAll('.stat-num').forEach(el => statsObs.observe(el));
 
 // ===== Time Options =====
-function generateTimeOptions() {
-  const opts = [];
+document.addEventListener('DOMContentLoaded', () => {
+  const checkinSel = document.getElementById('bCheckin');
+  const checkoutSel = document.getElementById('bCheckout');
+  if (!checkinSel || !checkoutSel) return;
+
+  // توليد الأوقات كل 30 دقيقة
   for (let h = 0; h < 24; h++) {
     for (let m = 0; m < 60; m += 30) {
       const hour12 = h === 0 ? 12 : (h > 12 ? h - 12 : h);
       const period = h < 12 ? 'صباحاً' : 'مساءً';
       const mm = m.toString().padStart(2, '0');
-      opts.push(`${hour12}:${mm} ${period}`);
+      const label = `${hour12}:${mm} ${period}`;
+
+      const optIn = document.createElement('option');
+      optIn.value = label;
+      optIn.textContent = label;
+      checkinSel.appendChild(optIn);
+
+      const optOut = document.createElement('option');
+      optOut.value = label;
+      optOut.textContent = label;
+      checkoutSel.appendChild(optOut);
     }
   }
-  return opts;
-}
 
-const timeOpts = generateTimeOptions();
-const checkinSel = document.getElementById('bCheckin');
-const checkoutSel = document.getElementById('bCheckout');
-
-timeOpts.forEach(t => {
-  checkinSel.insertAdjacentHTML('beforeend', `<option value="${t}">${t}</option>`);
-  checkoutSel.insertAdjacentHTML('beforeend', `<option value="${t}">${t}</option>`);
+  // القيم الافتراضية
+  checkinSel.value = '4:00 مساءً';
+  checkoutSel.value = '4:00 صباحاً';
 });
-
-// القيم الافتراضية
-checkinSel.value = '4:00 مساءً';
-checkoutSel.value = '4:00 صباحاً';
 
 // ===== Booking form → WhatsApp =====
 document.getElementById('bookingForm').addEventListener('submit', e => {
