@@ -4,45 +4,16 @@ window.addEventListener('scroll', () => {
   header.classList.toggle('scrolled', window.scrollY > 50);
 });
 
-// ===== Load Videos (كل الأجهزة) =====
-window.addEventListener('load', () => {
-  setTimeout(() => {
+// ===== Chalet videos play when visible =====
+document.querySelectorAll('.chalet-item').forEach(item => {
+  const video = item.querySelector('.chalet-video');
+  if (!video) return;
 
-    // Hero video
-    const heroMedia = document.querySelector('.hero-media');
-    if (heroMedia && heroMedia.dataset.video) {
-      const v = document.createElement('video');
-      v.src = heroMedia.dataset.video;
-      v.autoplay = true;
-      v.muted = true;
-      v.loop = true;
-      v.playsInline = true;
-      v.setAttribute('webkit-playsinline', '');
-      v.setAttribute('disablepictureinpicture', '');
-      heroMedia.appendChild(v);
-      v.play().catch(()=>{});
-    }
-
-    // Chalet videos
-    document.querySelectorAll('.chalet-media').forEach(media => {
-      const v = document.createElement('video');
-      v.src = media.dataset.video;
-      v.muted = true;
-      v.loop = true;
-      v.playsInline = true;
-      v.preload = 'metadata';
-      v.setAttribute('webkit-playsinline', '');
-      v.setAttribute('disablepictureinpicture', '');
-      media.appendChild(v);
-
-      const obs = new IntersectionObserver(([e]) => {
-        if (e.isIntersecting) v.play().catch(()=>{});
-        else v.pause();
-      }, { threshold: 0.45 });
-      obs.observe(media.parentElement);
-    });
-
-  }, 1200);
+  const obs = new IntersectionObserver(([e]) => {
+    if (e.isIntersecting) video.play().catch(()=>{});
+    else video.pause();
+  }, { threshold: 0.45 });
+  obs.observe(item);
 });
 
 // ===== Reveal on scroll =====
