@@ -84,23 +84,25 @@ img{max-width:100%;display:block}
   align-items:center;
   justify-content:center;
   overflow:hidden;
+  background:#1a1a1a;
 }
 .hero-bg{
   position:absolute;
-  inset:0;
+  top:0;
+  right:0;
+  bottom:0;
+  left:0;
   background-size:cover;
   background-position:center;
   background-repeat:no-repeat;
   z-index:0;
-  animation:heroZoom 20s ease-out forwards;
-}
-@keyframes heroZoom{
-  from{transform:scale(1.08)}
-  to{transform:scale(1)}
 }
 .hero-overlay{
   position:absolute;
-  inset:0;
+  top:0;
+  right:0;
+  bottom:0;
+  left:0;
   background:linear-gradient(to bottom,rgba(0,0,0,.35),rgba(0,0,0,.65));
   z-index:1;
 }
@@ -211,11 +213,13 @@ img{max-width:100%;display:block}
   overflow:hidden;
   border-radius:26px;
   background:#000;
-  isolation:isolate;
 }
 .chalet-video{
   position:absolute;
-  inset:0;
+  top:0;
+  right:0;
+  bottom:0;
+  left:0;
   width:100%;
   height:100%;
   object-fit:cover;
@@ -226,7 +230,8 @@ img{max-width:100%;display:block}
 }
 .chalet-item:hover .chalet-video{transform:scale(1.03)}
 .chalet-shade{
-  position:absolute;inset:0;
+  position:absolute;
+  top:0;right:0;bottom:0;left:0;
   background:linear-gradient(to top,rgba(0,0,0,.75) 0%,rgba(0,0,0,.15) 45%,transparent 75%);
   z-index:1;
 }
@@ -430,7 +435,7 @@ img{max-width:100%;display:block}
 
 /* ===== Lightbox ===== */
 .lightbox{
-  position:fixed;inset:0;z-index:3000;
+  position:fixed;top:0;right:0;bottom:0;left:0;z-index:3000;
   background:rgba(10,10,10,.96);
   backdrop-filter:blur(10px);
   display:flex;align-items:center;justify-content:center;
@@ -440,9 +445,7 @@ img{max-width:100%;display:block}
 .lb-img{
   max-width:92vw;max-height:88vh;border-radius:14px;
   box-shadow:0 30px 80px rgba(0,0,0,.6);
-  animation:lbFade .4s ease;
 }
-@keyframes lbFade{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:scale(1)}}
 .lb-close,.lb-prev,.lb-next{
   position:absolute;
   background:rgba(255,255,255,.08);
