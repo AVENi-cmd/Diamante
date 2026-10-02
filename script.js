@@ -72,7 +72,7 @@ document.getElementById('bookingForm').addEventListener('submit', e => {
   };
 
   const msg =
-`🌴 *طلب حجز جديد - ديامونتا*
+`🌴 *طلب حجز جديد - ديامُونتا*
 
 👤 الاسم: ${data.name}
 📱 الجوال: ${data.phone}
